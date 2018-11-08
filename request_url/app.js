@@ -9,7 +9,7 @@ http
       res.writeHead(200, { "Content-Type": "text/html" });
       fileSystem.createReadStream("home.html").pipe(res);
     } else {
-      res.writeHead(200, { "Content-Type": "text/html" });
+      res.writeHead(404, { "Content-Type": "text/html" });
       fileSystem.createReadStream("NotFound.html").pipe(res);
     }
   })
