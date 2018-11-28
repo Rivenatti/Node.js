@@ -32,7 +32,13 @@ createUser.post("/signup", (req, res) => {
               newUser.password = hash;
 
               // Save user in the database
-              newUser.save().then(user => res.json(user));
+              newUser.save(err => {
+                if (err) {
+                  if (err.errors.name) {
+                    res.json({ message: err.errors.name.message });
+                  }
+                } else res.json({ email: "User has been created" });
+              });
             }
           });
         }
